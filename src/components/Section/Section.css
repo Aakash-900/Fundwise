@@ -1,0 +1,16 @@
+.section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;  
+    margin-top: 50px;
+    background-position: center;
+    background-size: cover;
+    
+}
+
+.donation-text{
+    color: #5280D8;
+}
+
+
