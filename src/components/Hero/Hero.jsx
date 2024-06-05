@@ -1,6 +1,6 @@
 import React from 'react'
 import './Hero.css'
-import watch_img from '../../assets/watch-icon.svg'
+import watch_img from '../../assets/watch-icon.svg';
 
 const Hero = () => {
   return (

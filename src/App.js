@@ -5,6 +5,8 @@ import Search from "./components/Search/Search";
 import Section from "./components/Section/Section";
 import DonationContain from "./components/DonationContain/DonationContain";
 import SectionContain from "./components/SectionContain/SectionContain";
+import FundraisingPlatform from "./components/FundraisingPlatform/FundraisingPlatform";
+import HumanitarianMission from "./components/HumanitarianMission/HumanitarianMission";
 // import Signup from "./components/Signup/Signup";
 
 
@@ -18,6 +20,8 @@ function App(){
         <Search/>  
         <DonationContain/>
         <SectionContain/>
+        <FundraisingPlatform/>
+        <HumanitarianMission/>
        </div>
     );
 }

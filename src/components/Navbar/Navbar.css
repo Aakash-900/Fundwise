@@ -1,6 +1,7 @@
 nav{
     justify-content: space-between;
     background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -78,11 +79,12 @@ header ul li a:hover{
     font-size: 16px;
     list-style: none;
     font-weight: 10px;
-    padding: 10px  5%;
+    padding: 10px  9%;
     z-index: 9;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
     position: relative;
     text-align: right;
+    
 }
 .asked li a{
     font-size: 13px;
