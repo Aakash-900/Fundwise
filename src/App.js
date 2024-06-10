@@ -7,6 +7,7 @@ import DonationContain from "./components/DonationContain/DonationContain";
 import SectionContain from "./components/SectionContain/SectionContain";
 import FundraisingPlatform from "./components/FundraisingPlatform/FundraisingPlatform";
 import HumanitarianMission from "./components/HumanitarianMission/HumanitarianMission";
+import Partner from "./components/Partner/Partner";
 // import Signup from "./components/Signup/Signup";
 
 
@@ -22,6 +23,7 @@ function App(){
         <SectionContain/>
         <FundraisingPlatform/>
         <HumanitarianMission/>
+        <Partner/>
        </div>
     );
 }

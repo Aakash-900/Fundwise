@@ -19,3 +19,4 @@ const Card = ({ date, title, description, donations, imageUrl }) => {
 };
 
 export default Card;
+
