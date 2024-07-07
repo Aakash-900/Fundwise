@@ -1,0 +1,25 @@
+.campaign-filter {
+    display: flex;
+    gap: 10px;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+  
+  .campaign-filter input,
+  .campaign-filter select,
+  .campaign-filter button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .campaign-filter button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .campaign-filter button:hover {
+    background-color: #45a049;
+  }
+  
