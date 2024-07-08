@@ -8,12 +8,15 @@ import FundraisingPlatform from '../../components/Hompage_Components/Fundraising
 import PartnersSection from '../../components/Hompage_Components/Partner/PartnersSection'
 import HumanitarianMission from '../../components/Hompage_Components/HumanitarianMission/HumanitarianMission'
 import StartCampaign from '../../components/Hompage_Components/StartCampaign/StartCampaign'
+ 
+
 
 import './Home.css'
 const Home = () => {
   return (
     <div>
         <Hero/>  
+         
         <Section/>
         <Search/>
         <DonationContain/>

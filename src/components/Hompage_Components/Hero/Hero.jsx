@@ -28,6 +28,8 @@ const Hero = () => {
         </div>
       </div>
 
+      
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
