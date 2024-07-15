@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { createCampaign } from '../../api/campaigns'; // Import the API function
+import { createCampaign } from '../../api/campaigns';
 import './CreateCampaign.css';
 
 const CreateCampaign = () => {
@@ -25,7 +25,7 @@ const CreateCampaign = () => {
     try {
       const response = await createCampaign(formData);
       console.log('Campaign created successfully:', response);
-      setShowPopup(true); // Show popup on successful creation
+      setShowPopup(true);
     } catch (error) {
       console.error('Error creating campaign:', error);
     }
@@ -54,7 +54,7 @@ const CreateCampaign = () => {
   return (
     <div className="create-campaign-page" ref={formRef}>
       {showPopup && (
-        <div className="popup">
+        <div className="centered-popup">
           <p>Campaign created successfully!</p>
           <button onClick={handleClosePopup}>Close</button>
         </div>

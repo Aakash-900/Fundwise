@@ -1,13 +1,13 @@
-import React from 'react'
-import SectionContain from '../../components/Hompage_Components/SectionContain/SectionContain'
+// import React from 'react'
+// import SectionContain from '../../components/Hompage_Components/SectionContain/SectionContain'
 
-const Fundraiser = () => {
-  return (
-    <div>
-        <SectionContain/>
+// const Fundraiser = () => {
+//   return (
+//     <div>
+//         <SectionContain/>
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default Fundraiser
+// export default Fundraiser

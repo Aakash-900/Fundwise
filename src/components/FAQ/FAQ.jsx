@@ -4,6 +4,7 @@ import generalQuestionImage from '../../assets/general-question.png';
 import documentationImage from '../../assets/documentation.png';
 import supportDeskImage from '../../assets/support-desk.png';
 import contactUsImage from '../../assets/contact-us.png';
+import { Link } from 'react-router-dom';
 
 const FAQ = () => {
     return (
@@ -77,7 +78,7 @@ const FAQ = () => {
             <img src={contactUsImage} alt="Contact us" className="faq-image"/>
             <h2>No question I need here?</h2>
             <p>Can’t find the question you need, contact us for your new question.</p>
-            <button className="faq-button">Contact us</button>
+            <Link to="/Contact" className="faq-button">Contact us</Link>
           </section>
         </main>
       </div>

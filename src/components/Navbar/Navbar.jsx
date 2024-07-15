@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import imagelogo from "../../assets/logo.png";
 import LoginModal from "../Login/LoginModal";
 import { useUser } from "../Context/UserContext"; // Ensure correct path
@@ -10,6 +10,7 @@ const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false); // Added state for dropdown visibility
     const { user, logout } = useUser();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const toggleModal = () => {
         setModalOpen(!isModalOpen);
@@ -23,12 +24,19 @@ const Navbar = () => {
         }
     };
 
+    const handleLogout = () => {
+        logout();
+        navigate('/'); // Redirect to homepage after logout
+    };
+
+    const isActive = (path) => location.pathname === path;
+
     return (
         <header>
             <ul className="asked">
                 <li>
                     <Link to="/howitworks" className="content">How it works</Link>
-                    <Link to="/FAQ">FAQ</Link>
+                    <Link to="/FAQ">FAQs</Link>
                 </li>
             </ul>
             <nav className="container">
@@ -36,10 +44,10 @@ const Navbar = () => {
                     <img className="logo" src={imagelogo} alt="logo" />
                 </Link>
                 <ul className="menu">
-                    <Link to="/"><li>Home</li></Link>
-                    <Link to="/fundraiser"><li>Fundraiser</li></Link>
-                    <Link to="/Allcampaign"><li>Campaign</li></Link>
-                    <Link to="/Aboutus"><li>About us</li></Link>
+                <Link to="/" className={isActive('/') ? "active-link" : ""}><li>Home</li></Link>
+                    <Link to="/Allcampaign" className={isActive('/Allcampaign') ? "active-link" : ""}><li>Campaign</li></Link>
+                    <Link to="/Contact" className={isActive('/Contact') ? "active-link" : ""}><li>Contact</li></Link>
+                    <Link to="/Aboutus" className={isActive('/Aboutus') ? "active-link" : ""}><li>About us</li></Link>
                 </ul>
                 <div>
                     {user ? (
@@ -47,7 +55,8 @@ const Navbar = () => {
                             <span className="profile-name">Welcome, {user.firstName}</span>
                             {showDropdown && (
                                 <div className="dropdown-menu">
-                                    <span className="dropdown-item" onClick={logout}>Logout</span>
+                                    <Link to="/profile"className="dropdown-item">Profile</Link>
+                                    <span className="dropdown-item" onClick={handleLogout}>Logout</span>
                                 </div>
                             )}
                         </div>

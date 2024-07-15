@@ -21,15 +21,13 @@ const Hero = () => {
         <h1> <span className='hero-text-color'> Happiness</span> comes from <span className='hero-text-color'>your action</span></h1>
         <p>Be a part of the breakthrough and make someone's dream come true.</p>
         <div className='hero-btn'>
-          <Link to="/fundraiser" className='btn-donate'>Donate now</Link>
+          <Link to="/Allcampaign" className='btn-donate'>Donate now</Link>
           <button className='btn-watch' onClick={openModal}>
             <img src={watch_img} alt="btn-img" />Watch video
           </button>
         </div>
       </div>
-
-      
-
+  
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

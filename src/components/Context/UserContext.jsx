@@ -58,6 +58,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify'; // Import toast
 
 const UserContext = createContext();
 
@@ -65,7 +66,7 @@ export const useUser = () => useContext(UserContext);
 
 const fetchUserDetails = async (token) => {
   try {
-    const response = await axios.get("/api/auth/validate-token", {
+    const response = await axios.get("http://localhost:5500/api/auth/validate-token", {
       headers: { Authorization: `Bearer ${token}` }
     });
     return response.data.user; // Assuming the server responds with user data on successful token validation
@@ -94,15 +95,18 @@ export const UserProvider = ({ children }) => {
   const login = (userData, token) => {
     setUser(userData);
     localStorage.setItem('token', token);
+    localStorage.setItem('role', userData.role);
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    toast.success('Successfully logged out!', { autoClose: 2000 }); // Add toast notification for logout
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, setUser }}>
       {children}
     </UserContext.Provider>
   );

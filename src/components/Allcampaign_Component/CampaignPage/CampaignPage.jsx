@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import CampaignFilter from '../ShowCompaign/CampaignFilter';
 import CampaignCard from '../CampaignCard/CampaignCard';
 import CampaignPagination from '../CampaignPagination/CampaignPagination';
-import { fetchCampaigns } from '../../../api/campaigns'; // Import the API function
+import { fetchCampaigns } from '../../../api/campaigns';
 import './CampaignPage.css';
 
 const CampaignPage = () => {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({ category: '', search: '' });
   const [campaigns, setCampaigns] = useState([]);
+  const [filteredCampaigns, setFilteredCampaigns] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const campaignsPerPage = 12;
 
@@ -16,6 +17,7 @@ const CampaignPage = () => {
       try {
         const data = await fetchCampaigns();
         setCampaigns(data);
+        setFilteredCampaigns(data); // Initialize filtered campaigns
       } catch (error) {
         console.error('Error fetching campaigns:', error);
       }
@@ -28,23 +30,33 @@ const CampaignPage = () => {
   };
 
   const handleSearch = () => {
-    // Perform search based on filters
-    console.log('Search with filters:', filters);
+    const filtered = campaigns.filter(campaign => {
+      const searchMatch = campaign.title.toLowerCase().includes(filters.search.toLowerCase()) || campaign.story.toLowerCase().includes(filters.search.toLowerCase());
+      const categoryMatch = filters.category === '' || campaign.category === filters.category;
+      return searchMatch && categoryMatch;
+    });
+    setFilteredCampaigns(filtered);
   };
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const totalPages = campaigns.length ? Math.ceil(campaigns.length / campaignsPerPage) : 1;
-  
+  const totalPages = filteredCampaigns.length ? Math.ceil(filteredCampaigns.length / campaignsPerPage) : 1;
+
+  const currentDate = new Date();
+  const updatedCampaigns = filteredCampaigns.map(campaign => {
+    const endDate = new Date(campaign.endDate);
+    const daysLeft = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
+    return { ...campaign, daysLeft };
+  });
 
   return (
     <div className="campaign-page">
       <CampaignFilter onFilterChange={handleFilterChange} onSearch={handleSearch} />
       <div className="campaign-cards">
-        {Array.isArray(campaigns) && campaigns.length > 0 ? (
-          campaigns.slice((currentPage - 1) * campaignsPerPage, currentPage * campaignsPerPage).map((campaign) => (
+        {Array.isArray(updatedCampaigns) && updatedCampaigns.length > 0 ? (
+          updatedCampaigns.slice((currentPage - 1) * campaignsPerPage, currentPage * campaignsPerPage).map((campaign) => (
             <CampaignCard key={campaign._id} {...campaign} />
           ))
         ) : (

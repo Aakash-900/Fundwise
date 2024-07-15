@@ -66,7 +66,6 @@ nav ul li {
 /* asked question */
 
 header {
-    
     background-color: #fff;
     position: sticky;
     top: 0;
@@ -110,7 +109,7 @@ header ul li a:hover{
 .asked li a:last-child:before{
     margin: 0;
     padding: 0;
-    content: none;
+    content: none; 
 }
 .content{
     font-size: 16px;
@@ -119,8 +118,6 @@ header ul li a:hover{
 .togglebtn{
     display: flex;
 }
-
-
 
 .profile-menu {
     position: relative;
@@ -162,6 +159,37 @@ header ul li a:hover{
     cursor: pointer; /* Indicates that the profile name is interactive */
     display: inline-block;
     margin-right: 30px;
+}
+
+.menu li {
+    display: inline-block;
+    margin: 0 15px;
+    position: relative;
+  }
+  
+  .menu li::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #5280D8;
+    transition: width 0.4s;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+  }
+  
+  .menu li:hover::after {
+    width: 100%;
+  }
+
+  .menu li:hover::after,
+.menu .active-link li::after {
+  width: 100%;
+}
+
+.active-link li {
+  font-weight: bold;
 }
 
 

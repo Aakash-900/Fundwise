@@ -14,7 +14,7 @@
 
 .modal-content {
   background-color: white;
-  padding: 20px;
+  padding: 50px;
   width: 30%;
   min-width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -60,8 +60,10 @@
 
 .modal-checkbox-label {
   display: flex;
-  align-items: center;
-  margin-top: 10px;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .modal-message {

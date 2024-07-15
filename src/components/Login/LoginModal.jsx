@@ -3,6 +3,7 @@ import "./LoginModal.css";
 import { signup, login, forgetPassword } from "../../api/auth";
 import { useUser } from "../Context/UserContext";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [view, setView] = useState('login');
@@ -15,6 +16,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   });
   const [message, setMessage] = useState('');
   const { login: loginContext } = useUser();
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
@@ -38,20 +40,24 @@ const LoginModal = ({ isOpen, onClose }) => {
       if (view === 'signup') {
         if (formData.password !== formData.confirmPassword) {
           setMessage('Passwords do not match');
-          toast.error('Passwords do not match');
           return;
         }
         const response = await signup(formData);
-        setMessage('Signup successful! Please login.');
         toast.success('Signup successful! Please login.');
         setView('login');
       } else if (view === 'login') {
         const response = await login(formData);
         localStorage.setItem('token', response.token);
+        localStorage.setItem('role', response.user.role);
         loginContext(response.user, response.token);
-        setMessage('Login successful!');
+
         toast.success('Successfully logged in!');
         onClose();
+        if (response.user.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/');
+        }
       } else if (view === 'forgetPassword') {
         const response = await forgetPassword(formData.email);
         setMessage('Password reset link sent to your email');
@@ -72,7 +78,7 @@ const LoginModal = ({ isOpen, onClose }) => {
           {view === 'login' && (
             <div className="modal-login-section">
               <h2 className="modal-title">Login to Fundwise</h2>
-              <input className="modal-input" type="email" name="email" placeholder="Your email" onChange={handleChange} required />
+              <input className="modal-input" type="email" name="email" placeholder="Email" onChange={handleChange} required />
               <input className="modal-input" type="password" name="password" placeholder="Password" onChange={handleChange} required />
               <a className="modal-link" onClick={() => toggleView('forgetPassword')}>Forget password?</a>
               <button className="modal-action-button" type="submit">Login</button>
@@ -82,13 +88,14 @@ const LoginModal = ({ isOpen, onClose }) => {
           {view === 'signup' && (
             <div className="modal-signup-section">
               <h2 className="modal-title">Create Account</h2>
-              <input className="modal-input" type="text" name="firstName" placeholder="Your first name" onChange={handleChange} required />
-              <input className="modal-input" type="text" name="lastName" placeholder="Your last name" onChange={handleChange} required />
-              <input className="modal-input" type="email" name="email" placeholder="Your email" onChange={handleChange} required />
+              <input className="modal-input" type="text" name="firstName" placeholder="First name" onChange={handleChange} required />
+              <input className="modal-input" type="text" name="lastName" placeholder="Last name" onChange={handleChange} required />
+              <input className="modal-input" type="email" name="email" placeholder=" Email" onChange={handleChange} required />
               <input className="modal-input" type="password" name="password" placeholder="Password" onChange={handleChange} required />
               <input className="modal-input" type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} required />
               <label className="modal-checkbox-label">
-                <input type="checkbox" required /> I agree to the terms and conditions
+                <input type="checkbox" required />
+                <p>I have read, understood and agree to the <span>Fund wise terms</span> and <span>privacy & condition</span></p>
               </label>
               <button className="modal-action-button" type="submit">Sign Up</button>
               <button className="modal-switch-button" type="button" onClick={() => toggleView('login')}>Already have an account?</button>

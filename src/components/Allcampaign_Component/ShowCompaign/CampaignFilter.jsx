@@ -1,30 +1,38 @@
 import React from 'react';
+import Select from 'react-select';
 import './CampaignFilter.css';
 
+const options = [
+  { value: '', label: 'All Categories' },
+  { value: 'category1', label: 'Business & StartUp' },
+  { value: 'category2', label: 'Medical & Healing' },
+  { value: 'category3', label: 'Causes & Charities' },
+  // Add more categories as needed
+];
+
 const CampaignFilter = ({ onFilterChange, onSearch }) => {
+  const handleCategoryChange = (selectedOption) => {
+    onFilterChange('category', selectedOption.value);
+  };
+
+  const handleSearchChange = (e) => {
+    onFilterChange('search', e.target.value);
+  };
+
   return (
     <div className="campaign-filter">
       <input
         type="text"
-        placeholder="Type some words related to the campaign"
-        onChange={(e) => onFilterChange('search', e.target.value)}
+        placeholder="Search..."
+        onChange={handleSearchChange}
       />
-      <input
-        type="text"
-        placeholder="Address"
-        onChange={(e) => onFilterChange('address', e.target.value)}
+      <Select
+        options={options}
+        defaultValue={options[0]}
+        onChange={handleCategoryChange}
+        classNamePrefix="react-select"
       />
-      <select onChange={(e) => onFilterChange('topics', e.target.value)}>
-        <option value="">Topics</option>
-        <option value="topic1">Topic 1</option>
-        <option value="topic2">Topic 2</option>
-      </select>
-      <select onChange={(e) => onFilterChange('category', e.target.value)}>
-        <option value="">Category</option>
-        <option value="category1">Category 1</option>
-        <option value="category2">Category 2</option>
-      </select>
-      <button onClick={onSearch}>Search</button>
+      <button className="btn-search" onClick={onSearch}>Search</button>
     </div>
   );
 };

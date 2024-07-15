@@ -7,7 +7,6 @@
   position: static;
   text-align: center;
   background: linear-gradient(to right, #5280D8 50%, #fff 50%);
-  padding: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -16,11 +15,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-   /* Ensure it's not fixed or sticky */
+   height: 100%;/* Ensure it's not fixed or sticky */
 }
 
 .header-text {
   max-width: 50%;
+  padding-left: 70px;
 }
 
 .header-text h1 {
@@ -59,6 +59,9 @@
   padding: 1rem;
   border-radius: 5px;
 }
+
+
+
 
 .faq-section h2 {
   font-size: 1.5rem;
