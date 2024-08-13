@@ -219,7 +219,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
-
+  
     try {
       if (view === 'signup') {
         const passwordError = validatePassword(formData.password);
@@ -228,29 +228,48 @@ const LoginModal = ({ isOpen, onClose }) => {
           toast.error(passwordError);
           return;
         }
-
+  
         if (formData.password !== formData.confirmPassword) {
           setMessage('Passwords do not match');
           toast.error('Passwords do not match');
           return;
         }
-
+  
         const response = await signup(formData);
         toast.success('Signup successful! Please verify your email.');
         setView('login');
       } else if (view === 'login') {
         const response = await login(formData);
-
+  
+        // Check if response.msg exists before using it
+        if (response && response.msg) {
+          if (response.msg.includes('Invalid credentials')) {
+            toast.error(response.msg);
+            return;
+          }
+  
+          if (response.msg.includes('locked')) {
+            toast.error(response.msg);
+            return;
+          }
+        }
+  
+        if (response.forcePasswordChange) {
+          toast.warn('Your password has expired. Please reset your password.');
+          navigate('/reset-password');  // Redirect to the password reset page
+          return;
+        }
+  
         if (response.user.role !== 'admin' && !response.user.verified) {
           setMessage('Please verify your email before logging in.');
           toast.error('Please verify your email before logging in.');
           return;
         }
-
+  
         localStorage.setItem('token', response.token);
         localStorage.setItem('role', response.user.role);
         loginContext(response.user, response.token);
-
+  
         toast.success('Successfully logged in!');
         onClose();
         if (response.user.role === 'admin') {
@@ -270,7 +289,6 @@ const LoginModal = ({ isOpen, onClose }) => {
       toast.error(error.msg || 'Something went wrong');
     }
   };
-
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>

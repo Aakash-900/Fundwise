@@ -42,22 +42,24 @@ const PasswordStrengthIndicator = ({ password }) => {
   }, [password]);
 
   return (
-    <div className="password-strength-container">
-      <div className="password-strength-bar">
-        <div
-          className="password-strength-bar-fill"
-          style={{
-            width: `${strength}%`,
-            backgroundColor: strength === 100 ? "green" : strength >= 60 ? "orange" : "red",
-          }}
-        />
+    password.length > 0 && (
+      <div className="password-strength-container">
+        <div className="password-strength-bar">
+          <div
+            className="password-strength-bar-fill"
+            style={{
+              width: `${strength}%`,
+              backgroundColor: strength === 100 ? "green" : strength >= 60 ? "orange" : "red",
+            }}
+          />
+        </div>
+        {strengthLabel && (
+          <p className="password-strength-label" style={{ color: strength === 100 ? "green" : strength >= 60 ? "orange" : "red" }}>
+            {strengthLabel}
+          </p>
+        )}
       </div>
-      {strengthLabel && (
-        <p className="password-strength-label" style={{ color: strength === 100 ? "green" : strength >= 60 ? "orange" : "red" }}>
-          {strengthLabel}
-        </p>
-      )}
-    </div>
+    )
   );
 };
 
