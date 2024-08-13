@@ -1,37 +1,45 @@
-// import React, { useEffect, useState } from 'react';
-// import './verifyEmail.css'
-// import { useLocation, useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { verifyEmail } from "../../api/auth"; // Assuming you have an API call set up
+import { toast } from "react-toastify";
 
-// const VerifyEmail = () => {
-//   const location = useLocation();
-//   const navigate = useNavigate();
-//   const [verificationStatus, setVerificationStatus] = useState('Verifying...');
+const VerifyEmail = () => {
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
 
-//   useEffect(() => {
-//     const queryParams = new URLSearchParams(location.search);
-//     const token = queryParams.get('token');
+  useEffect(() => {
+    const verifyToken = async () => {
+      const queryParams = new URLSearchParams(location.search);
+      const token = queryParams.get('token');
 
-//     if (token) {
-//       axios.get(`/api/auth/verify-email?token=${token}`)
-//         .then(response => {
-//           setVerificationStatus('Email verified successfully!');
-//           toast.success(response.data.msg);
-//           navigate('/login');
-//         })
-//         .catch(error => {
-//           setVerificationStatus('Email verification failed.');
-//           toast.error('Email verification failed');
-//         });
-//     }
-//   }, [location, navigate]);
+      if (!token) {
+        setMessage('Invalid verification link');
+        toast.error('Invalid verification link');
+        return;
+      }
 
-//   return (
-//     <div className="verification-container">
-//       <h2>{verificationStatus}</h2>
-//     </div>
-//   );
-// };
+      try {
+        const response = await verifyEmail(token);
+        setMessage('Email verified successfully!');
+        toast.success('Email verified successfully!');
+        navigate('/login'); // Redirect to login after verification
+      } catch (error) {
+        console.error('Verification error:', error);
+        setMessage('Verification failed. Please try again.');
+        toast.error('Verification failed. Please try again.');
+      }
+    };
 
-// export default VerifyEmail;
+    verifyToken();
+  }, [location, navigate]);
+
+  return (
+    <div>
+      <h2>Email Verification</h2>
+      <p>{message}</p>
+    </div>
+  );
+};
+
+export default VerifyEmail;

@@ -62,5 +62,14 @@ export const forgetPassword = async (email) => {
   }
 };
 
+export const verifyEmail = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/verify-email?token=${token}`);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : new Error('Network Error');
+  }
+};
+
 
 
