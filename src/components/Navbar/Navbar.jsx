@@ -56,6 +56,7 @@ const Navbar = () => {
                             {showDropdown && (
                                 <div className="dropdown-menu">
                                     <Link to="/profile"className="dropdown-item">Profile</Link>
+                                    <Link to="/mycampaigns" className="dropdown-item">My Campaigns</Link>
                                     <span className="dropdown-item" onClick={handleLogout}>Logout</span>
                                 </div>
                             )}

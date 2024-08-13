@@ -55,6 +55,8 @@ import ResetPassword from "./components/Restpassword/ResetPassword";
 import { UserProvider, useUser } from './components/Context/UserContext';
 import CampaignDetailPage from './pages/CampaignDetails/CampaignDetailPage';
 import AdminDashboard from './pages/AdminDasboard/Admin/AdminDasboard';
+import MyCampaigns from './components/MyCampaign/MyCampaigns';
+import EditCampaign from './components/MyCampaign/EditCampaign';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { ToastContainer, toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
@@ -128,6 +130,8 @@ const App = () => {
         <Route path="/reset/:token" element={<ResetPassword />} />
         <Route path="/admin/*" element={<AdminDashboard onLogout={handleLogout} />} />
         <Route path="/campaign/:id" element={<CampaignDetailPage />} />
+        <Route path="/mycampaigns" element={<MyCampaigns />} />
+          <Route path="/edit-campaign/:id" element={<EditCampaign />} />
       </Routes>
       {!isAdminRoute && <Footer />} {/* Conditionally render Footer */}
     </div>

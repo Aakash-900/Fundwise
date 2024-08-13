@@ -138,7 +138,7 @@ header ul li a:hover{
 
 .profile-name:hover + .dropdown-menu,
 .dropdown-menu:hover {
-    display: block; /* Show the dropdown when hovering over the profile name or the dropdown itself */
+    display: block; /*  Show the dropdown when hovering over the profile name or the dropdown itself */
 }
 
 .dropdown-item {
