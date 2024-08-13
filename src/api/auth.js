@@ -55,7 +55,7 @@ export const login = async (userData) => {
 
 export const forgetPassword = async (email) => {
   try {
-    const response = await axios.post(`${API_URL}/forget-password`, { email });
+    const response = await axios.post(`${API_URL}/forgot-password`, {email} );
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : new Error('Network Error');

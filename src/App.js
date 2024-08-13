@@ -60,6 +60,7 @@ import EditCampaign from './components/MyCampaign/EditCampaign';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { ToastContainer, toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+// import VerifyEmail from './components/Login/verifyEmail';
 
 const AuthManager = () => {
   const { setUser } = useUser();
@@ -120,6 +121,7 @@ const App = () => {
       <ToastContainer autoClose={2000} />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* <Route path="/verify-email" element={<VerifyEmail />} /> */}
         <Route path="/create-campaign" element={<CreateCampaignPage />} />
         <Route path="/Allcampaign" element={<Allcampaign />} />
         <Route path="/FAQ" element={<FAQpage />} />
