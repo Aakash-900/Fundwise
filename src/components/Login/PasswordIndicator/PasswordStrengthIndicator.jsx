@@ -15,7 +15,7 @@ const PasswordStrengthIndicator = ({ password }) => {
     const numberCriteria = /\d/.test(password);
     const specialCharCriteria = /[@$!%*?&]/.test(password);
 
-    // Increment strength based on criteria met
+    
     if (lengthCriteria) strength += 20;
     if (uppercaseCriteria) strength += 20;
     if (lowercaseCriteria) strength += 20;
