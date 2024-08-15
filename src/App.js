@@ -97,7 +97,7 @@ const AuthManager = () => {
     return <div>Loading...</div>; 
   }
 
-  return null; // This component does not render anything
+  return null; 
 };
 
 const App = () => {
