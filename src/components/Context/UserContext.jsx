@@ -12,7 +12,7 @@ const fetchUserDetails = async (token) => {
     const response = await axios.get("http://localhost:5500/api/auth/validate-token", {
       headers: { Authorization: `Bearer ${token}` }
     });
-    return response.data.user; // Assuming the server responds with user data on successful token validation
+    return response.data.user; 
   } catch (error) {
     console.error("Failed to fetch user details", error);
     return null;
