@@ -14,16 +14,23 @@ const CreateCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formData = new FormData();
     formData.append('title', title);
     formData.append('story', story);
     formData.append('goal', goal);
     formData.append('endDate', endDate);
     formData.append('image', image);
-
+  
     try {
-      const response = await createCampaign(formData);
+      // Get the CSRF token from cookies
+      const csrfToken = document.cookie.match(/XSRF-TOKEN=([^;]+)/)?.[1];
+  
+      if (!csrfToken) {
+        throw new Error('CSRF token not found');
+      }
+  
+      const response = await createCampaign(formData, csrfToken); // Pass the CSRF token to the createCampaign function
       console.log('Campaign created successfully:', response);
       setShowPopup(true);
     } catch (error) {
