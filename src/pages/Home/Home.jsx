@@ -19,8 +19,6 @@ const Home = () => {
     <div>
         <Hero/>  
         <Section/>
-        {/* <Search/> */}
-        {/* <DonationContain/> */}
         <SectionContain/>
         <FundraisingPlatform/>
         <HumanitarianMission/>
