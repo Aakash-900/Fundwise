@@ -94,7 +94,7 @@ const AuthManager = () => {
   }, [setUser]);
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator while fetching user data
+    return <div>Loading...</div>; 
   }
 
   return null; // This component does not render anything
