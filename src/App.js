@@ -108,7 +108,7 @@ const App = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     setUser(null);
-    toast.success('Successfully logged out!'); // Show success notification
+    toast.success('Successfully logged out!'); 
   };
 
   // Determine if the current route is an admin route
