@@ -111,7 +111,7 @@ const App = () => {
     toast.success('Successfully logged out!'); 
   };
 
-
+  // Determine if the current route is an admin route
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
