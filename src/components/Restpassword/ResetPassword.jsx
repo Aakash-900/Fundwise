@@ -12,7 +12,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Debugging logs
+    
     console.log(`New Password: ${newPassword}`);
     console.log(`Confirm Password: ${confirmPassword}`);
 
