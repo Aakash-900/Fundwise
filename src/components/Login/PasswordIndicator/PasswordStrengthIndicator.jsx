@@ -24,7 +24,7 @@ const PasswordStrengthIndicator = ({ password }) => {
 
     setStrength(strength);
 
-    
+    // Set the strength label and color
     if (strength === 100) {
       setStrengthLabel('Strong Password');
     } else if (strength >= 60) {
