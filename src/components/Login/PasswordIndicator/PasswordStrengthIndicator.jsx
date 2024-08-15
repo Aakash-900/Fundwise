@@ -36,7 +36,7 @@ const PasswordStrengthIndicator = ({ password }) => {
     }
   };
 
-  // Update strength whenever the password changes
+  
   useEffect(() => {
     calculateStrength(password);
   }, [password]);
