@@ -1,44 +1,3 @@
-// import React from "react";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// // import { UserProvider } from "../src/components/Context/UserContext"; // Adjust path as needed
-// import Navbar from "./components/Navbar/Navbar";
-// import Footer from "./components/Footer/Footer";
-// import Home from "./pages/Home/Home";
-// import Fundraiser from "./pages/Fundraiserpage/Fundraiser";
-// import CreateCampaignPage from "./pages/CreateCampaign/CreateCampaignPage";
-// import Allcampaign from "./pages/Allcampaign/Allcampaign";
-// import FAQpage from "./pages/FQApage/FAQpage";
-// import ContactUs from "./pages/Contactpage/ContactUs";
-// import Howitworkspage from "./pages/Howitworkpage/howitworkspage";
-// import Aboutuspage from "./pages/Aboutuspage/Aboutuspage";
-// import ResetPassword from "./components/Restpassword/ResetPassword";
-
-// function App() {
-//   return (
-    
-//       <Router>
-//         <div className="app">
-//           <Navbar />
-//           <Routes>
-//             <Route path="/" element={<Home />} />
-//             <Route path="/fundraiser" element={<Fundraiser />} />
-//             <Route path="/create-campaign" element={<CreateCampaignPage />} />
-//             <Route path="/Allcampaign" element={<Allcampaign />} />
-//             <Route path="/FAQ" element={<FAQpage />} />
-//             <Route path="/Contact" element={<ContactUs />} />
-//             <Route path="/howitworks" element={<Howitworkspage />} />
-//             <Route path="/Aboutus" element={<Aboutuspage />} />
-//             <Route path="/reset/:token" element={<ResetPassword />} />
-//           </Routes>
-//           <Footer />
-//         </div>
-//       </Router>
-    
-//   );
-// }
-
-// export default App;
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
@@ -69,7 +28,7 @@ const AuthManager = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.get('http://localhost:5500/api/auth/validate-token', {
+      axios.get('https://localhost:5500/api/auth/validate-token', {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
