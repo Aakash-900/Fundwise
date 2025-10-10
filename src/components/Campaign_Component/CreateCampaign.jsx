@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { createCampaign } from '../../api/campaigns';
 import './CreateCampaign.css';
+import { toast } from 'react-toastify';
 
 const CreateCampaign = () => {
   const [title, setTitle] = useState('');
@@ -23,15 +24,9 @@ const CreateCampaign = () => {
     formData.append('image', image);
   
     try {
-      // Get the CSRF token from cookies
-      const csrfToken = document.cookie.match(/XSRF-TOKEN=([^;]+)/)?.[1];
-  
-      if (!csrfToken) {
-        throw new Error('CSRF token not found');
-      }
-  
-      const response = await createCampaign(formData, csrfToken); // Pass the CSRF token to the createCampaign function
-      console.log('Campaign created successfully:', response);
+      // No CSRF token logic needed
+      const response = await createCampaign(formData); // No CSRF token passed
+      toast.success('Signup successful! Please verify your email.');
       setShowPopup(true);
     } catch (error) {
       console.error('Error creating campaign:', error);

@@ -23,13 +23,9 @@ const ResetPassword = () => {
 
     try {
       const payload = { newPassword, confirmPassword };
-      console.log('Request Payload:', payload); // Log the payload
-
       const response = await axios.post(`http://localhost:5500/api/auth/reset/${token}`, payload);
-      console.log('Response:', response.data); // Log response data
       setMessage(response.data.msg);
     } catch (err) {
-      console.log('Error:', err.response ? err.response.data : err); // Log error details
       setMessage('Error resetting password');
     }
   };

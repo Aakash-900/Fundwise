@@ -25,17 +25,36 @@ const CampaignPage = () => {
     loadCampaigns();
   }, []);
 
+  useEffect(() => {
+    const filtered = campaigns.filter(campaign => {
+      const titleStartsWith = filters.search 
+        ? campaign.title.toLowerCase().startsWith(filters.search.toLowerCase()) 
+        : true;
+
+      const categoryMatch = filters.category === '' || campaign.category === filters.category;
+      
+      return titleStartsWith && categoryMatch;
+    });
+    setFilteredCampaigns(filtered);
+    setCurrentPage(1); // Reset to the first page when filters change
+  }, [filters, campaigns]);
+
   const handleFilterChange = (key, value) => {
     setFilters({ ...filters, [key]: value });
   };
 
   const handleSearch = () => {
     const filtered = campaigns.filter(campaign => {
-      const searchMatch = campaign.title.toLowerCase().includes(filters.search.toLowerCase()) || campaign.story.toLowerCase().includes(filters.search.toLowerCase());
+      const titleStartsWith = filters.search 
+        ? campaign.title.toLowerCase().startsWith(filters.search.toLowerCase()) 
+        : true;
+
       const categoryMatch = filters.category === '' || campaign.category === filters.category;
-      return searchMatch && categoryMatch;
+      
+      return titleStartsWith && categoryMatch;
     });
     setFilteredCampaigns(filtered);
+    
   };
 
   const handlePageChange = (page) => {

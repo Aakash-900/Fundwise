@@ -28,7 +28,8 @@ const AuthManager = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.get('https://localhost:5500/api/auth/validate-token', {
+      // axios.get('http://localhost:5500/api/auth/validate-token', {
+        axios.get('https://crowdfunding-backend.onrender.com/api/auth/validate-token', {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
