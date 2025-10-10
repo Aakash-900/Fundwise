@@ -1,8 +1,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'https://crowdfunding-backend.onrender.com/api/auth';
-
+const API_URL = 'https://fundwise-backend.onrender.com/api/auth';
 
 
 export const signup = async (userData) => {

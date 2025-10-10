@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'https://crowdfunding-backend.onrender.com/api/campaigns';
+const API_URL = 'https://fundwise-backend.onrender.com/api/campaigns';
 
 export const createCampaign = async (campaignData) => {
   const token = localStorage.getItem('token');
