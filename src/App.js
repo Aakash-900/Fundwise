@@ -29,35 +29,35 @@ const AuthManager = () => {
     const token = localStorage.getItem('token');
     if (token) {
       // axios.get('http://localhost:5500/api/auth/validate-token', {
-        axios.get('https://crowdfunding-backend.onrender.com/api/auth/validate-token', {
+      axios.get('https://fundwise-backend.onrender.com/api/auth/validate-token', {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(response => {
-        if (response.data && response.data.user) {
-          setUser(response.data.user);
-        } else {
+        .then(response => {
+          if (response.data && response.data.user) {
+            setUser(response.data.user);
+          } else {
+            localStorage.removeItem('token');
+            localStorage.removeItem('role');
+          }
+        })
+        .catch(error => {
+          console.error("Token validation failed:", error.response ? error.response.data : error.message);
           localStorage.removeItem('token');
           localStorage.removeItem('role');
-        }
-      })
-      .catch(error => {
-        console.error("Token validation failed:", error.response ? error.response.data : error.message);
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     } else {
       setLoading(false);
     }
   }, [setUser]);
 
   if (loading) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
-  return null; 
+  return null;
 };
 
 const App = () => {
@@ -68,10 +68,10 @@ const App = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     setUser(null);
-    toast.success('Successfully logged out!'); 
+    toast.success('Successfully logged out!');
   };
 
-  
+
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
@@ -93,7 +93,7 @@ const App = () => {
         <Route path="/admin/*" element={<AdminDashboard onLogout={handleLogout} />} />
         <Route path="/campaign/:id" element={<CampaignDetailPage />} />
         <Route path="/mycampaigns" element={<MyCampaigns />} />
-          <Route path="/edit-campaign/:id" element={<EditCampaign />} />
+        <Route path="/edit-campaign/:id" element={<EditCampaign />} />
       </Routes>
       {!isAdminRoute && <Footer />} {/* Conditionally render Footer */}
     </div>
