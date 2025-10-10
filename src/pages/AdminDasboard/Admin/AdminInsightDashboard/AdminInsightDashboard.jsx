@@ -20,7 +20,7 @@ const AdminInsightDashboard = () => {
     const fetchInsights = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5500/api/campaigns/insights', {
+        const response = await axios.get('https://crowdfunding-backend.onrender.com/api/campaigns/insights', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setInsights(response.data);

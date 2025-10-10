@@ -20,7 +20,7 @@ const EditCampaign = () => {
 
   const fetchCampaign = async () => {
     try {
-      const response = await axios.get(`http://localhost:5500/api/campaigns/${id}`, {
+      const response = await axios.get(`https://crowdfunding-backend.onrender.com/api/campaigns/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setCampaign(response.data);

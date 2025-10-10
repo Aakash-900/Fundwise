@@ -46,7 +46,7 @@ const Profile = () => {
         formDataToSend.append('profileImage', profileImage);
       }
 
-      const response = await axios.put('http://localhost:5500/api/auth/update-profile', formDataToSend, {
+      const response = await axios.put('https://crowdfunding-backend.onrender.com/api/auth/update-profile', formDataToSend, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' },
       });
 

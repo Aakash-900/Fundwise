@@ -34,7 +34,7 @@ const AdminCampaignsList = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5500/api/campaigns/${campaignToDelete}`, {
+      await axios.delete(`https://crowdfunding-backend.onrender.com/api/campaigns/${campaignToDelete}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCampaigns(campaigns.filter((campaign) => campaign._id !== campaignToDelete));

@@ -14,7 +14,7 @@ const AdminContactList = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await axios.get('http://localhost:5500/api/contacts', {
+      const response = await axios.get('https://crowdfunding-backend.onrender.com/api/contacts', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setContacts(response.data);

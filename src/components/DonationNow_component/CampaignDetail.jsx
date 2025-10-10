@@ -39,7 +39,7 @@ const CampaignDetail = () => {
   }
 
   const progressPercentage = (campaign.raised / campaign.goal) * 100;
-  const imageUrl = campaign.image ? `http://localhost:5500${campaign.image}` : campaign.imageUrl;
+  const imageUrl = campaign.image ? `https://crowdfunding-backend.onrender.com${campaign.image}` : campaign.imageUrl;
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -89,7 +89,7 @@ const CampaignDetail = () => {
 
   const handleDonation = async (token) => {
     try {
-      const response = await axios.post('http://localhost:5500/api/payment/verify-payment', {
+      const response = await axios.post('https://crowdfunding-backend.onrender.com/api/payment/verify-payment', {
         token,
         amount: parseInt(donationAmount, 10) * 100, // Ensure the amount is in paisa
         user: user.firstName,

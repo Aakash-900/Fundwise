@@ -18,7 +18,7 @@ const UserDonationsList = () => {
     try {
       const token = localStorage.getItem('token');
       console.log("Fetching donations with token:", token);
-      const response = await axios.get('http://localhost:5500/api/campaigns/donations', {
+      const response = await axios.get('https://crowdfunding-backend.onrender.com/api/campaigns/donations', {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("Donations fetched:", response.data);

@@ -12,7 +12,7 @@ const MyCampaigns = () => {
     const fetchCampaigns = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5500/api/campaigns/mine', {
+        const response = await axios.get('https://crowdfunding-backend.onrender.com/api/campaigns/mine', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCampaigns(response.data.campaigns || []);

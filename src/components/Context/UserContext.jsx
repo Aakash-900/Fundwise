@@ -9,7 +9,7 @@ export const useUser = () => useContext(UserContext);
 
 const fetchUserDetails = async (token) => {
   try {
-    const response = await axios.get("http://localhost:5500/api/auth/validate-token", {
+    const response = await axios.get("https://crowdfunding-backend.onrender.com/api/auth/validate-token", {
       headers: { Authorization: `Bearer ${token}` }
     });
     return response.data.user; // Assuming the server responds with user data on successful token validation

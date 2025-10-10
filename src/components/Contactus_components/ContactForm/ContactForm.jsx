@@ -12,7 +12,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5500/api/contacts', { name, email, subject, message });
+      await axios.post('https://crowdfunding-backend.onrender.com/api/contacts', { name, email, subject, message });
       toast.success('Message sent successfully');
       setName('');
       setEmail('');

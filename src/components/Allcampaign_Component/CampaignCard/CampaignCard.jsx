@@ -16,7 +16,7 @@ const CampaignCard = ({ _id, image, title, story, raised, goal, topDonors = [], 
   return (
     <Link to={`/campaign/${_id}`} state={{ campaign: { _id, image, title, story, raised, goal, topDonors, comments, daysLeft, donations } }} className="campaign-card-link">
       <div className="campaign-card">
-        <img src={`http://localhost:5500${image}`} alt={title} className="campaign-card-image" onError={(e) => { e.target.onerror = null; e.target.src = "fallback_image_url"; }} />
+        <img src={`https://crowdfunding-backend.onrender.com${image}`} alt={title} className="campaign-card-image" onError={(e) => { e.target.onerror = null; e.target.src = "fallback_image_url"; }} />
         <div className="campaign-card-content">
           <h3 className="campaign-card-title">{title}</h3>
           <p className="campaign-card-description">{truncatedDescription}</p>

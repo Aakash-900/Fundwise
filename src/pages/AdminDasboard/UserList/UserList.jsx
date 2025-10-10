@@ -22,7 +22,7 @@ const UserList = () => {
     try {
       const token = localStorage.getItem('token');
       console.log('Token:', token); // Debugging: Log the token
-      const response = await axios.get('http://localhost:5500/api/admin/users', {
+      const response = await axios.get('https://crowdfunding-backend.onrender.com/api/admin/users', {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log('Response:', response.data); // Debugging: Log the response data
